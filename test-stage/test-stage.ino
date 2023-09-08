@@ -54,7 +54,8 @@ void loop() {
       delay(15);
     }
   }
-  //Serial.println("END");
+  Serial.println("Ended");
+  //delay(1000);
 }
 
 bool isBaseCommand(int servoPosition) {

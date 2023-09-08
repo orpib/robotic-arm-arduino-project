@@ -7,7 +7,7 @@ int bluetoothRx = 11;
 
 Servo servo;
 //SoftwareSerial bluetoothControl(bluetoothRx, bluetoothTx);  // RX, TX
-
+String wholeData = "" ;
 void setup() {
   // put your setup code here, to run once:
   //servo.attach(servoPin);
@@ -16,17 +16,32 @@ void setup() {
 }
 
 void loop() {
-  //Serial.println("Blue");
-  //Serial.println(bluetoothControl.available());
+
+  if(Serial.available() >= 10){
+
+    int command = Serial.read();
+    int servoPosition = command;
+
+
+    if(servoPosition)
+
+
+  }
+
+ 
   Serial.println("Serial");
 
   Serial.println(Serial.available());
 
-  if (Serial.available() > 0) {
+  while (Serial.available() > 0) {
     char data = Serial.read();
+    wholeData += data; 
 
-    Serial.println(data);
+    
   }
+
+  Serial.println(wholeData);
+  wholeData = "";
 
   Serial.println("TEST");
   // if (bluetoothControl.available() > 0) /* If data is available on serial port */
@@ -36,4 +51,10 @@ void loop() {
   //   Serial.println("Kaj hoi nai");
   delay(500);
   // }
+}
+
+bool isBaseCommand(int servoPosition){
+
+  return servoPosition >= 40 && servoPosition < 100
+
 }
