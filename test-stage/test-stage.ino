@@ -24,6 +24,8 @@ void loop() {
 
     int command = Serial.read();
     int servoPosition = command;
+    Serial.print("postision");
+    Serial.println(servoPosition);
 
 
     if (isBaseCommand(servoPosition)) {
@@ -54,7 +56,7 @@ void loop() {
       delay(15);
     }
   }
-  Serial.println("Ended");
+ // Serial.println("Ended");
   //delay(1000);
 }
 
@@ -64,7 +66,7 @@ bool isBaseCommand(int servoPosition) {
 }
 
 int getMappedBasePosition(int value) {
-  return map(value, 40, 100, 0, 90);
+  return map(value, 40, 100, 0, 180); // 90
 }
 
 bool isBodyCommand(int servoPosition) {
@@ -72,15 +74,15 @@ bool isBodyCommand(int servoPosition) {
 }
 
 int getMappedBodyPosition(int value) {
-  return map(value, 102, 200, 0, 90);
+  return map(value, 102, 200, 0, 180); // 180
 }
 
 bool isClawCommand(int servoPosition) {
-  return servoPosition >= 202 && servoPosition < 250;
+  return servoPosition >= 210 && servoPosition < 256;
 }
 
 int getMappedClawPosition(int value) {
-  return map(value, 202, 220, 0, 60);
+  return map(value, 210, 255, 0, 120);
 }
 
 
